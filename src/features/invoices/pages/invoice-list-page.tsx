@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom"
-import { useCallback } from "react"  // ← tambahkan
+import { useCallback } from "react"
 import { useInvoices } from "../hooks/useInvoices"
 import InvoiceTable from "../components/invoice-table"
 import InvoiceSearch from "../components/invoice-search"
@@ -65,17 +65,33 @@ export default function InvoiceListPage() {
     })
   }, [data, page, search, status, sort, order, queryClient])
 
-  if (isLoading) return <div className="text-gray-700 dark:text-gray-300">Loading...</div>
+  if (isLoading) return (
+    <div className="space-y-4">
+      {/* search dan filter bar skeleton */}
+      <div className="flex gap-4">
+        <div className="h-9 flex-1 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+        <div className="h-9 w-36 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+      </div>
+      {/* table header skeleton */}
+      <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+      {/* table rows skeleton 10 sesuai limit per halaman */}
+      {Array.from({ length: 10 }).map((_, i) => (
+        <div key={i} className="h-11 bg-gray-100 dark:bg-gray-800 rounded animate-pulse" />
+      ))}
+      {/* pagination skeleton */}
+      <div className="h-9 w-48 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+    </div>
+  )
 
   return (
     <div className="space-y-4">
       <div className="flex gap-4">
         <InvoiceSearch
           value={search ?? ""}
-          onChange={handleSearchChange}/>
+          onChange={handleSearchChange} />
         <InvoiceFilter
           value={statusParam ?? "all"}
-          onChange={handleFilterChange}/>
+          onChange={handleFilterChange} />
       </div>
 
       <InvoiceTable invoices={data?.data ?? []} sort={sort} order={order} />
@@ -85,7 +101,7 @@ export default function InvoiceListPage() {
         total={data?.total ?? 0}
         limit={10}
         onPageChange={handlePageChange}
-        onNextPageHover={handleNextPageHover}/>
+        onNextPageHover={handleNextPageHover} />
     </div>
   )
 }
