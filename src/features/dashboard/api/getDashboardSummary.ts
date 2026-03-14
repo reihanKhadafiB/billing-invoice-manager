@@ -32,6 +32,10 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
         unpaid: invoices.filter((i) => i.status === "unpaid").length,
         overdue: invoices.filter((i) => i.status === "overdue").length,
     }
+
+    const latestInvoices = [...invoices]
+        .sort((a, b) => new Date(b.due_date).getTime() - new Date(a.due_date).getTime())
+        .slice(0, 5)
     
     return {
         totalRevenue,
@@ -39,6 +43,6 @@ export async function getDashboardSummary(): Promise<DashboardSummary> {
         totalOverdue,
         totalInvoiceThisMonth,
         statusDistribution,
-        invoices
+        latestInvoices
     }
 }
