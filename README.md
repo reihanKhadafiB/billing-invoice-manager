@@ -226,7 +226,14 @@ Mock data (in-memory array + localStorage)
 
 **Sonner** dipilih untuk toast notification karena API-nya minimal, support dark mode otomatis, dan terintegrasi baik dengan React 19.
 
----
+## Bagian Paling Challenging
+
+yang paling challenging menurut saya itu di sini
+
+-> Pagination minimal 10 item per halaman. Gunakan keepPreviousData (atau
+placeholderData) agar tidak blank saat berpindah halaman.
+
+saat saya next pagination, saat di klik next malah cuma glitch pindah ke pagination 2, terus balik lagi ke pagination 1, url nya pun sama, kaya glitch doang sebentar, lumayan susah, tapi gatau kenapa kalo ngoding itu seru, apalagi belajar hal baru.
 
 ## Demo
 
