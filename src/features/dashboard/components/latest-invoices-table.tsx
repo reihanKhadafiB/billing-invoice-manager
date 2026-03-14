@@ -10,14 +10,7 @@ type Props = {
 export default function LatestInvoicesTable({ invoices }: Props) {
 
   const getCustomerName = (id: string) =>
-   customers.find((c) => c.id === id)?.name ?? id
-
-  const latest = [...invoices]
-    .sort(
-      (a, b) => {
-      return b.id.localeCompare(a.id)
-    })
-    .slice(0, 5)
+    customers.find((c) => c.id === id)?.name ?? id
 
   return (
     <table className="w-full border dark:border-gray-700">
@@ -31,16 +24,24 @@ export default function LatestInvoicesTable({ invoices }: Props) {
       </thead>
 
       <tbody>
-        {latest.map((invoice) => (
+        {invoices.map((invoice) => (
           <tr key={invoice.id} className="border-t dark:border-gray-700">
             <td className="p-2 text-gray-800 dark:text-gray-200">
-              <Link to={`/invoices/${invoice.id}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+              <Link
+                to={`/invoices/${invoice.id}`}
+                className="text-blue-600 dark:text-blue-400 hover:underline">
                 {invoice.id}
               </Link>
             </td>
-            <td className="p-2 text-gray-800 dark:text-gray-200">{getCustomerName(invoice.customer_id)}</td>
-            <td className="p-2 text-gray-800 dark:text-gray-200">{formatRupiah(invoice.amount)}</td>
-            <td className="p-2 text-gray-800 dark:text-gray-200">{invoice.status}</td>
+            <td className="p-2 text-gray-800 dark:text-gray-200">
+              {getCustomerName(invoice.customer_id)}
+            </td>
+            <td className="p-2 text-gray-800 dark:text-gray-200">
+              {formatRupiah(invoice.amount)}
+            </td>
+            <td className="p-2 text-gray-800 dark:text-gray-200">
+              {invoice.status}
+            </td>
           </tr>
         ))}
       </tbody>
