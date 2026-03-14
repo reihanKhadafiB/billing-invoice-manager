@@ -10,7 +10,7 @@ export default function DashboardPage() {
 
   const { data, isLoading, error } = useDashboardSummary()
 
-  if (isLoading) return <DashboardSkeleton/>
+  if (isLoading) return <DashboardSkeleton />
 
   if (error) return (
     <div className="p-6 border border-red-200 bg-red-50 rounded-lg text-center space-y-2">
@@ -29,13 +29,13 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-4 gap-4">
         <SummaryCard title="Revenue" value={formatRupiah(data.totalRevenue)} />
-        <SummaryCard title="Unpaid"  value={formatRupiah(data.totalUnpaid)} />
+        <SummaryCard title="Unpaid" value={formatRupiah(data.totalUnpaid)} />
         <SummaryCard title="Overdue" value={formatRupiah(data.totalOverdue)} />
         <SummaryCard title="Invoice This Month" value={data.totalInvoiceThisMonth} />
       </div>
 
       <InvoiceStatusChart distribution={data.statusDistribution} />
-      <LatestInvoicesTable invoices={data.invoices}/>
+      <LatestInvoicesTable invoices={data.latestInvoices} />
 
     </div>
   )
