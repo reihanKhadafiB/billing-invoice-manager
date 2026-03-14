@@ -12,5 +12,5 @@ export type DashboardSummary = {
   totalOverdue: number
   totalInvoiceThisMonth: number
   statusDistribution: StatusDistribution
-  invoices: Invoice[]
+  latestInvoices: Invoice[]
 }
