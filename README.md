@@ -230,4 +230,4 @@ Mock data (in-memory array + localStorage)
 
 ## Demo
 
-[Link demo akan ditambahkan setelah deploy ke Vercel/Netlify]
+https://reihankhadafi-billing-invoice-manager.netlify.app/
